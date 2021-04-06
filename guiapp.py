@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, Text
-import os
+import subprocess
 
 root = tk.Tk()
 apps = []
@@ -21,6 +21,11 @@ def addApps():
         label.pack()
 
 
+def runApps():
+    for app in apps:
+        subprocess.call(["open", app])
+
+
 canvas = tk.Canvas(root, height=700, width=700, bg="#263D42")
 canvas.pack()
 
@@ -32,7 +37,7 @@ openFile = tk.Button(root, text="Open File", padx=10,
 openFile.pack()
 
 runApps = tk.Button(root, text="Run App", padx=10,
-                    pady=5, fg="black", bg="#263D42")
+                    pady=5, fg="black", bg="#263D42", command=runApps)
 runApps.pack()
 
 root.mainloop()
